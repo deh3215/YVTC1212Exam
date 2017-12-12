@@ -52,7 +52,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d("Data", title + " " + longitude + " " + latitude);
 
             } while (c.moveToNext());
+        }   else    {
+            Log.d("Data", "No Data !");
         }
+
+
     }
 
     /**

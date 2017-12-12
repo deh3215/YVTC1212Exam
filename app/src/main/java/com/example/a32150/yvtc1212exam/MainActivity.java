@@ -40,16 +40,6 @@ public class MainActivity extends AppCompatActivity {
     ListView lv;
     MyDataHandler dataHandler;
     MyAdapter adapter;
-    //=========================
-//    private DB mDbHelper;
-//    private long rowId;
-//    private int mNoteNumber = 1;
-//    protected static final int MENU_INSERT = Menu.FIRST;
-//    protected static final int MENU_DELETE = Menu.FIRST + 1;
-//    protected static final int MENU_UPDATE = Menu.FIRST + 2;
-//    protected static final int MENU_INSERT_WITH_SPECIFIC_ID = Menu.FIRST + 3;
-    //=========================
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,23 +58,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick2(View v)  {
+        Intent it = new Intent(MainActivity.this, ChatActivity.class);
+        startActivity(it);
+    }
+
+    public void onClick3(View v)  {
         Intent it = new Intent(MainActivity.this, MapsActivity.class);
         startActivity(it);
-
-//        mDbHelper = new DB(MainActivity.this).open();
-//        Cursor c = mDbHelper.getAll();
-//        startManagingCursor(c);
-//        //從cursor讀資料進來
-//        if (c.moveToFirst()) {
-//            //Log.d("Data", "OK");
-//            do {
-//                String title = c.getString(c.getColumnIndex("title"));
-//                String longitude = c.getString(c.getColumnIndex("longitude"));
-//                String latitude = c.getString(c.getColumnIndex("latitude"));
-//                // do what ever you want here
-//                Log.d("Data", title + " " + longitude + " " + latitude);
-//            } while (c.moveToNext());
-//        }
     }
 
 
