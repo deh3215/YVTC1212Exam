@@ -32,11 +32,9 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         et = (EditText)findViewById(R.id.editText);
         lv = (ListView)findViewById(R.id.listView);
-        //adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, R.id.text1);
-        //lv.setAdapter(adapter);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -69,7 +67,6 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void onClick(View v)   {
-        //adapter.add(et.getText().toString());
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -78,9 +75,7 @@ public class ChatActivity extends AppCompatActivity {
                     count++;
                 }
                 str = et.getText().toString();
-                if("".equals(str)){
-
-                }else{
+                if(!str.equals("")){
                     myRef.child("Chat").child(count+"").setValue(str);
                     et.setText("");
                     count=0;
