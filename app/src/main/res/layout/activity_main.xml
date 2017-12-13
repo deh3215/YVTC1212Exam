@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <ListView
         android:id="@+id/listView"
-        android:layout_width="392dp"
-        android:layout_height="464dp"
+        android:layout_width="375dp"
+        android:layout_height="460dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick2"
-        android:text="第二題"
+        android:text="第三題"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 

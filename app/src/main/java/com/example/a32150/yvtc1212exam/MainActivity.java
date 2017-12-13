@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class MyItemClick implements AdapterView.OnItemClickListener {
-
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent it = new Intent(MainActivity.this, WebViewEx.class);

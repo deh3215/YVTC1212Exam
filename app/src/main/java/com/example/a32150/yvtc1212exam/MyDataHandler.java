@@ -7,6 +7,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by yvtc on 2017/10/30.
@@ -20,6 +22,7 @@ public class MyDataHandler extends DefaultHandler {
     public ArrayList<String> titles = new ArrayList();
     public ArrayList<String> links = new ArrayList();
     public ArrayList<String> imgs = new ArrayList();
+    public ArrayList<String> context = new ArrayList();
     StringBuilder titleTemp = new StringBuilder();
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -84,20 +87,40 @@ public class MyDataHandler extends DefaultHandler {
             links.add(data);
         }
 
-//        String imgData;
+        String conData;
+        String imgData;
         if (isImg && isItem)
         {
             String data = new String(ch, start, length);
-            int indexStart = data.indexOf("='");
-            int indexEnd = data.indexOf("'>");
-            Log.d("MyImg", indexStart+", "+indexEnd);
-            if (indexStart==-1 || indexEnd==-1) {
-                data = "R.drawable/mipmap/ic_launcher";
+            int imgStart = data.indexOf("='");
+            int imgEnd = data.indexOf("'>");
+
+            int conStart = data.indexOf("<p>", imgEnd);
+            if (conStart == -1)
+                conStart = 0;
+            else
+                conStart+=3;
+
+            Log.d("MyImg", imgStart+", "+imgEnd);
+            if (imgStart==-1 || imgEnd==-1) {
+                imgData = "";
             } else {
-                data = data.substring(indexStart+2, indexEnd - indexStart+2);
-                Log.d("MyImg", data);
+                imgData = data.substring(imgStart+2, imgEnd - imgStart+2);
+                Log.d("MyImg", imgData);
             }
-            imgs.add(data);
+            imgs.add(imgData);
+
+            Pattern p = Pattern.compile("<p>(\\S+)</p>");
+            Matcher m = p.matcher(data);
+            if (m.find()) {
+
+                // get the matching group
+                // print the group
+                Log.d("Context", m.group(1));
+                context.add(m.group(1));
+            }
+
+
         }
     }
 }
